@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+<div class="container">
+    <h1>RAG Test</h1>
+    <h4>Augment konwoledge of choosen model and ask him about it</h4>
+</div></div>
+<div class="container">
+    <form class="form-group" action="/" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            <div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" disabled="True">
+      Choose LLM model
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Model 1</a>
+      <a class="dropdown-item" href="#">Model 2</a>
+      <a class="dropdown-item" href="#">Model 3</a>
+    </div>
+            {{ form.query(size=50) }}
+            {{ form.submit() }}
+        </p>
+    </form>
+</div>
+    <p><b>Query:</b> {{ query }}</p>
+    <p><b>Answer:</b> {{ answer['Response'] }}</p>
+    <p><b>Answer source:</b> {{ answer['Sources'] }}</p>
+</div>
+{% endblock %}
